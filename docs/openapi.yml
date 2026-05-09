@@ -8,6 +8,21 @@ servers:
     description: Local environment
 
 paths:
+  /health:
+    get:
+      tags: [System]
+      summary: Health check
+      operationId: healthCheck
+      responses:
+        '200':
+          description: Service is available
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+              example:
+                message: server running
+
   /tasks:
     get:
       tags: [Tasks]
@@ -231,3 +246,11 @@ components:
         message:
           type: string
           example: No query results for model [App\Models\Task] 999
+
+    HealthResponse:
+      type: object
+      required: [message]
+      properties:
+        message:
+          type: string
+          example: server running

@@ -3,7 +3,13 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/health');
+});
+
+Route::get('/health', function () {
+    return response()->json([
+        'message' => 'server running',
+    ]);
 });
 
 Route::get('/docs', function () {
